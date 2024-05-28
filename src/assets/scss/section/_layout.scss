@@ -1,0 +1,48 @@
+#header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 260px;
+    height: 100%;
+    z-index: 10000;
+    background-color: #333;
+}
+#main {
+    max-width: 2000px;
+    min-height: 100vh;
+    margin: 0px auto;
+    padding-left: 260px;
+    background-color: #111
+}
+#footer {
+    text-align: center;
+    background-color: #222;
+    padding-left: 260px;
+}
+#ssgLanders,
+#ktWiz,
+#samsungLions,
+#kiaTigers,
+#kiwoomHeroes,
+#kboLeague,
+#lgTwins,
+#dusanBears,
+#ncDinos,
+#hanhwaEagles,
+#lotteGiants {
+    padding: 24px;
+    h2{
+        margin-bottom: 0.6rem;
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 960px) {
+    #header {
+        left: -260px;
+    }
+    #main {
+        padding-left: 0px;
+        padding-top: 80px;
+    }
+}
