@@ -6,7 +6,6 @@ import Sns from '../header/Sns';
 
 
 const Header = () => {
-  const location = useLocation();
   
   return (
     <header id='header' role='banner'>
