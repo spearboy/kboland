@@ -39,3 +39,38 @@ body {
         }
     }
 }
+
+#searchPage {
+    padding: 2rem;
+    h2 {
+        margin-bottom: 0.8rem;
+        font-size: 1.25rem;
+        position: relative;
+        z-index: 10;
+        em {
+            position: relative;
+            &::before {
+                content: '';
+                width: 100%;
+                height: 10px;
+                background-color: #ff0000;
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                z-index: -1;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

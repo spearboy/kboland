@@ -1,0 +1,84 @@
+.channel__header {
+    width: 100%;
+    height: 300px;
+    background-color: #ccc;
+    padding-top: 100px;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .circle {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #ccc;
+        position: absolute;
+        left: 50%;
+        top: 200px;
+        transform: translate(-50%);
+        z-index: 100;
+    }
+}
+
+.channel__info {
+    margin-top: 100px;
+    text-align: center;
+    .title {
+        margin-bottom: 10px;
+        font-size: 2rem;
+    }
+    .desc {
+        padding: 0 10vw;
+    }
+    .info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        span {
+            width: fit-content;
+            padding: 4px 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            background-color: #313131;
+            border-radius: 10px;
+        }
+    }
+}
+.channel__more {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    button {
+        margin-bottom: 40px;
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        background-color: #313131;
+        cursor: pointer;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            width: 20px;
+            height: 20px;
+            border-bottom: 3px solid #ccc;
+            border-left: 3px solid #ccc;
+        }
+    }
+}
+.channel__inner {
+    .video__inner {
+        padding: 40px;
+    }
+}

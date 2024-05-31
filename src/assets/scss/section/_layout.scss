@@ -8,16 +8,22 @@
     background-color: #333;
 }
 #main {
+    position: relative;
     max-width: 2000px;
     min-height: 100vh;
     margin: 0px auto;
-    padding-left: 260px;
+    margin-left: 260px;
     background-color: #111
 }
 #footer {
     text-align: center;
     background-color: #222;
     padding-left: 260px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 #ssgLanders,
 #ktWiz,
