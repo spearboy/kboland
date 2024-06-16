@@ -1,8 +1,12 @@
-
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 const VideoView = ({ videos }) => {
+    // videos가 정의되지 않거나 빈 배열일 경우 처리
+    if (!videos || !Array.isArray(videos) || videos.length === 0) {
+        return <div>비디오가 없습니다.</div>;
+    }
+
     return (
         <>
             {videos.map((video, index) => (
@@ -27,4 +31,9 @@ const VideoView = ({ videos }) => {
     )
 }
 
-export default VideoView
+// 기본 props 설정
+VideoView.defaultProps = {
+    videos: [],
+};
+
+export default VideoView;

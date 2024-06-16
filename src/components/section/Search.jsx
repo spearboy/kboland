@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
@@ -6,12 +6,11 @@ const Search = () => {
     const navigate = useNavigate();
 
     const handleSearch = () => {
-        console.log(searchKeyword);
-        if (searchKeyword) {
-            navigate(`/search/${searchKeyword}`);
+        if (searchKeyword.trim()) { // 검색 키워드가 공백이 아닌지 확인
+            navigate(`/search/${searchKeyword.trim()}`);
             setSearchKeyword('');
         }
-    }
+    };
 
     return (
         <div id='search'>
@@ -25,6 +24,7 @@ const Search = () => {
                     placeholder='검색어를 입력해주세요!'
                     autoComplete='off'
                     className='search__input'
+                    value={searchKeyword}
                     onChange={e => setSearchKeyword(e.target.value)}
                     onKeyDown={e => {
                         if (e.key === 'Enter') {
@@ -32,9 +32,10 @@ const Search = () => {
                         }
                     }}
                 />
+                {/* <button onClick={handleSearch} className='search__button'>검색</button> 검색 버튼 추가 */}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Search
+export default Search;
