@@ -97,13 +97,13 @@
         height: 100%;
     }
     .video_comment {
-        position: fixed;
-        top: 80px;
-        right: 40px;
         height: calc(100% - 240px);
         overflow: hidden auto;
+        padding-top: 0px;
+        position: fixed;
+        right: 40px;
+        top: 140px;
         width: 300px;
-        padding-top: 60px;
         h3 {
             background-color: var(--white);
             color: var(--black);
@@ -168,6 +168,7 @@
         .video_comment {
             padding: 10px 30px;
             right: -300px;
+            top: 80px;
             height: calc(100% - 70px);
             background-color: #fff;
             transition: all 0.3s ease;
