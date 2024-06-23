@@ -17,6 +17,8 @@ const Home = () => {
   useEffect(() => {
     const fetchNews = async () => {
       const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY_NEWS;
+      console.log('API Key:', apiKey);  // 환경 변수가 올바르게 로드되었는지 확인
+
       if (!apiKey) {
         console.error("API key is missing");
         return;
@@ -127,5 +129,5 @@ const Home = () => {
     </Main>
   );
 }
- 
+
 export default Home;
