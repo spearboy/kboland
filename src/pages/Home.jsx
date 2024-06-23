@@ -24,7 +24,7 @@ const Home = () => {
         return;
       }
 
-      const url = `https://newsapi.org/v2/everything?q=KBO OR 한국 야구&language=ko&pageSize=5&apiKey=75c1b139ce23402d9b0623f75ba0fa6c`;
+      const url = `https://newsapi.org/v2/everything?q=KBO OR 한국 야구&language=ko&pageSize=5&apiKey=${apiKey}`;
 
       try {
         const response = await fetch(url);
@@ -39,6 +39,18 @@ const Home = () => {
         console.log(data);
       } catch (error) {
         console.error("Error fetching the news:", error);
+        // 로컬 news.json 파일에서 데이터 가져오기
+        try {
+          const localResponse = await fetch('/news.json');
+          if (!localResponse.ok) {
+            throw new Error(`HTTP error! status: ${localResponse.status}`);
+          }
+          const localData = await localResponse.json();
+          setNews(localData.articles);
+          console.log(localData);
+        } catch (localError) {
+          console.error("Error fetching the local news:", localError);
+        }
       }
     };
 
