@@ -16,14 +16,25 @@ const Home = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-      const apiKey = '75c1b139ce23402d9b0623f75ba0fa6c';
+      const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY_NEWS;
+      if (!apiKey) {
+        console.error("API key is missing");
+        return;
+      }
+
       const url = `https://newsapi.org/v2/everything?q=KBO OR 한국 야구&language=ko&pageSize=5&apiKey=${apiKey}`;
 
       try {
         const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
+        if (!data.articles) {
+          throw new Error("Invalid response structure");
+        }
         setNews(data.articles);
-        console.log(data)
+        console.log(data);
       } catch (error) {
         console.error("Error fetching the news:", error);
       }
@@ -97,7 +108,7 @@ const Home = () => {
               </Link>
             ))
           ) : (
-            <p>Loading news...</p>
+            <p>뉴스를 불러오는 중...</p>
           )}
         </div>
       </div>
