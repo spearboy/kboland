@@ -64,9 +64,9 @@ const Home = () => {
       //     console.error("Error fetching the local news:", localError);
       //   }
       // }
-      
+
       try {
-        const localResponse = await fetch('/src/data/news.json');
+        const localResponse = await fetch('/news.json');  // public 폴더에 있는 news.json 파일을 로드
         if (!localResponse.ok) {
           throw new Error(`HTTP error! status: ${localResponse.status}`);
         }
