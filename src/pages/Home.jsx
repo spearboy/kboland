@@ -21,6 +21,18 @@ const Home = () => {
 
       if (!apiKey) {
         console.error("API key is missing");
+        // 로컬 news.json 파일에서 데이터 가져오기
+        try {
+          const localResponse = await fetch('/src/data/news.json');
+          if (!localResponse.ok) {
+            throw new Error(`HTTP error! status: ${localResponse.status}`);
+          }
+          const localData = await localResponse.json();
+          setNews(localData.articles);
+          console.log(localData);
+        } catch (localError) {
+          console.error("Error fetching the local news:", localError);
+        }
         return;
       }
 
@@ -41,7 +53,7 @@ const Home = () => {
         console.error("Error fetching the news:", error);
         // 로컬 news.json 파일에서 데이터 가져오기
         try {
-          const localResponse = await fetch('/news.json');
+          const localResponse = await fetch('/src/data/news.json');
           if (!localResponse.ok) {
             throw new Error(`HTTP error! status: ${localResponse.status}`);
           }
