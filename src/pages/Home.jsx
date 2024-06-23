@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Main from '../components/section/Main';
 import { homeDetails, legend40 } from "../data/home";
+import { Link } from 'react-router-dom';
 
 const getRandomTeam = (teams) => {
+  if (teams.length === 0) return null;
   const randomIndex = Math.floor(Math.random() * teams.length);
   return teams[randomIndex];
 }
@@ -38,15 +40,19 @@ const Home = () => {
     <Main title="메인" description="KBO LAND 메인">
       <div className='content_wrapper'>
         <h3>오늘의 소개팀!</h3>
-        <div className='team_info_wrapper'>
-          <div className='team_logo_wrapper'>
-            <img src={randomTeam.teamLogo} alt={randomTeam.teamName} />
-            <p>{randomTeam.teamName}</p>
+        {randomTeam ? (
+          <div className='team_info_wrapper'>
+            <div className='team_logo_wrapper'>
+              <img src={randomTeam.teamLogo} alt={randomTeam.teamName} />
+              <p>{randomTeam.teamName}</p>
+            </div>
+            <div className='content'>
+              {randomTeam.teamText}
+            </div>
           </div>
-          <div className='content'>
-            {randomTeam.teamText}
-          </div>
-        </div>
+        ) : (
+          <p>팀 정보를 불러올 수 없습니다.</p>
+        )}
       </div>
       <div className='content_wrapper'>
         <div className='team_wrapper'>
@@ -85,11 +91,10 @@ const Home = () => {
         <div className='news_wrapper'>
           {news.length > 0 ? (
             news.map((article, index) => (
-              <div key={index} className='news_article'>
+              <Link key={index} className='news_article' to={article.url} rel='noopener noreferrer' target='_blank'>
                 <h4>{article.title}</h4>
                 <p>{article.description}</p>
-                <a href={article.url} target='_blank' rel='noopener noreferrer'>Read more</a>
-              </div>
+              </Link>
             ))
           ) : (
             <p>Loading news...</p>
