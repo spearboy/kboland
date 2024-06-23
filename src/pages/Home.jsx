@@ -16,53 +16,65 @@ const Home = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-      const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY_NEWS;
-      console.log('API Key:', apiKey);  // 환경 변수가 올바르게 로드되었는지 확인
+      // const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY_NEWS;
+      // console.log('API Key:', apiKey);  // 환경 변수가 올바르게 로드되었는지 확인
 
-      if (!apiKey) {
-        console.error("API key is missing");
-        // 로컬 news.json 파일에서 데이터 가져오기
-        try {
-          const localResponse = await fetch('/src/data/news.json');
-          if (!localResponse.ok) {
-            throw new Error(`HTTP error! status: ${localResponse.status}`);
-          }
-          const localData = await localResponse.json();
-          setNews(localData.articles);
-          console.log(localData);
-        } catch (localError) {
-          console.error("Error fetching the local news:", localError);
-        }
-        return;
-      }
+      // if (!apiKey) {
+      //   console.error("API key is missing");
+      //   // 로컬 news.json 파일에서 데이터 가져오기
+      //   try {
+      //     const localResponse = await fetch('/src/data/news.json');
+      //     if (!localResponse.ok) {
+      //       throw new Error(`HTTP error! status: ${localResponse.status}`);
+      //     }
+      //     const localData = await localResponse.json();
+      //     setNews(localData.articles);
+      //     console.log(localData);
+      //   } catch (localError) {
+      //     console.error("Error fetching the local news:", localError);
+      //   }
+      //   return;
+      // }
 
-      const url = `https://newsapi.org/v2/everything?q=KBO OR 한국 야구&language=ko&pageSize=5&apiKey=${apiKey}`;
+      // const url = `https://newsapi.org/v2/everything?q=KBO OR 한국 야구&language=ko&pageSize=5&apiKey=${apiKey}`;
 
+      // try {
+      //   const response = await fetch(url);
+      //   if (!response.ok) {
+      //     throw new Error(`HTTP error! status: ${response.status}`);
+      //   }
+      //   const data = await response.json();
+      //   if (!data.articles) {
+      //     throw new Error("Invalid response structure");
+      //   }
+      //   setNews(data.articles);
+      //   console.log(data);
+      // } catch (error) {
+      //   console.error("Error fetching the news:", error);
+      //   // 로컬 news.json 파일에서 데이터 가져오기
+      //   try {
+      //     const localResponse = await fetch('/src/data/news.json');
+      //     if (!localResponse.ok) {
+      //       throw new Error(`HTTP error! status: ${localResponse.status}`);
+      //     }
+      //     const localData = await localResponse.json();
+      //     setNews(localData.articles);
+      //     console.log(localData);
+      //   } catch (localError) {
+      //     console.error("Error fetching the local news:", localError);
+      //   }
+      // }
+      
       try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        const localResponse = await fetch('/src/data/news.json');
+        if (!localResponse.ok) {
+          throw new Error(`HTTP error! status: ${localResponse.status}`);
         }
-        const data = await response.json();
-        if (!data.articles) {
-          throw new Error("Invalid response structure");
-        }
-        setNews(data.articles);
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching the news:", error);
-        // 로컬 news.json 파일에서 데이터 가져오기
-        try {
-          const localResponse = await fetch('/src/data/news.json');
-          if (!localResponse.ok) {
-            throw new Error(`HTTP error! status: ${localResponse.status}`);
-          }
-          const localData = await localResponse.json();
-          setNews(localData.articles);
-          console.log(localData);
-        } catch (localError) {
-          console.error("Error fetching the local news:", localError);
-        }
+        const localData = await localResponse.json();
+        setNews(localData.articles);
+        console.log(localData);
+      } catch (localError) {
+        console.error("Error fetching the local news:", localError);
       }
     };
 
