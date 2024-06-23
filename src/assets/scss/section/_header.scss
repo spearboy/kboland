@@ -74,9 +74,10 @@
                     
                     span {
                         width: 100%;
+                        background-color: #0043fd;
                     }
                     p {
-                        color: #2b2b2b;
+                        color: var(--white);
                     }
                 }
             }
@@ -99,14 +100,15 @@
             a {
                 display: inline-block;
                 padding: 5px 15px;
-                border: 1px solid #2b2b2b;
+                border: 1px solid #0043fd;
                 font-size: 0.8rem;
                 border-radius: 40px;
                 margin: 3px 1px;
                 transition: all 0.3s;
+                color: #0043fd;
 
                 &:hover {
-                    background-color: var(#505050);
+                    background-color: #0043fd;
                     color: var(--white);
                 }
             }

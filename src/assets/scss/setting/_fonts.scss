@@ -86,3 +86,25 @@
          url("../../fonts/nexonLv1-Bold.ttf") format("truetype");
     font-display: swap;
 } 
+
+@font-face {
+    font-family: "KBO-Dia-Gothic";
+    font-weight: 600;
+    font-style: normal;
+    src: url("../../fonts/KBO-Dia-Gothic_bold.woff") format("woff");
+    font-display: swap;
+} 
+@font-face {
+    font-family: "KBO-Dia-Gothic";
+    font-weight: 500;
+    font-style: normal;
+    src: url("../../fonts/KBO-Dia-Gothic_medium.woff") format("woff");
+    font-display: swap;
+} 
+@font-face {
+    font-family: "KBO-Dia-Gothic";
+    font-weight: 300;
+    font-style: normal;
+    src: url("../../fonts/KBO-Dia-Gothic_light.woff") format("woff");
+    font-display: swap;
+} 

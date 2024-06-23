@@ -5,7 +5,8 @@
     width: 260px;
     height: 100%;
     z-index: 10000;
-    background-color: #333;
+    background-color: #f2f2f2;
+    box-shadow: -8px 0px 20px 0px #aaaaaa;
 }
 #main {
     position: relative;
@@ -13,11 +14,11 @@
     min-height: 100vh;
     margin: 0px auto;
     margin-left: 260px;
-    background-color: #111
+    background-color: #f1f1f1
 }
 #footer {
     text-align: center;
-    background-color: #222;
+    background-color: #fcfcfc;
     padding-left: 260px;
     min-height: 100px;
     display: flex;
@@ -46,9 +47,18 @@
 @media (max-width: 960px) {
     #header {
         left: -260px;
+        .header__sns {
+            display: none;
+        }
     }
     #main {
         padding-left: 0px;
         padding-top: 80px;
+        margin-left: 0px;
+        width: 100%;
+        max-width: 100%;
+    }
+    #footer {
+        padding-left: 0px;
     }
 }

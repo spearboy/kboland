@@ -1,0 +1,173 @@
+.content_wrapper {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid var(--black);
+    &:last-child {
+        border-bottom: 0px;
+    }
+    h3 {
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .team_info_wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 10px;
+        .team_logo_wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            img {
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+            }
+            p {
+                font-size: 30px;
+            }
+        }
+        .content {
+            line-height: 30px;
+        }
+    }
+    .team_content_wrap {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+        .team_content {
+            width: 250px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0px 0px 3px 0px #aaaaaa;
+            transition: all 0.3s ease;
+            &.active {
+                background-color: #0043fd;
+                color: #fff;
+            }
+            img {
+                width: 70px;
+                height: 70px;
+                object-fit: contain;
+            }
+            &:hover {
+                background-color: #0043fd;
+                color: var(--white);
+                cursor: pointer;
+            }
+        }
+    }
+    .home_play_area {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0px 0px 3px 0px #aaaaaa;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        div {
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
+            p {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 10px;
+                span {
+                    display: inline-block;
+                    background-color: #0043fd;
+                    color: var(--white);
+                    padding: 2px 6px;
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+    .news_wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 10px;
+        .news_article {
+            padding: 20px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 10px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0px 0px 3px 0px #aaaaaa;
+            transition: all 0.3s ease;
+            p {
+                width: 100%;
+                text-align: left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            &:hover {
+                background-color: #0043fd;
+                color: var(--white);
+                cursor: pointer;
+            }
+        }
+    }
+    .legend40_wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+        .legend40_content {
+            width: 210px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 4px;
+            .nick {
+                font-size: 18px;
+                color: #0043fd;
+            }
+        }
+    }
+}

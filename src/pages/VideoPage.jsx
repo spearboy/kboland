@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import Main from '../components/section/Main'
-
+import React, { useEffect, useState, useRef } from 'react';
+import Main from '../components/section/Main';
 import { Link, useParams } from 'react-router-dom';
 import Loading from '../components/section/Loading';
 import ReactPlayer from 'react-player';
-
 import { CiChat1 } from "react-icons/ci";
 import { CiStar } from "react-icons/ci";
 import { CiRead } from "react-icons/ci";
@@ -14,6 +12,8 @@ const VideoPage = () => {
   const [videoDetail, setVideoDetail] = useState(null);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [commentsActive, setCommentsActive] = useState(false);
+  const videoCommentRef = useRef(null);
 
   useEffect(() => {
     const fetchVideoDetails = async () => {
@@ -35,7 +35,6 @@ const VideoPage = () => {
       }
     };
 
-
     const fetchComments = async () => {
       try {
           const response = await fetch(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoID}&key=${process.env.REACT_APP_YOUTUBE_API_KEY_TWO}`);
@@ -47,10 +46,27 @@ const VideoPage = () => {
           console.log(error);
           setLoading(false);
       }
-  };
-  fetchVideoDetails();
-  fetchComments();
+    };
+
+    fetchVideoDetails();
+    fetchComments();
+
+    const handleClickOutside = (event) => {
+      if (videoCommentRef.current && !videoCommentRef.current.contains(event.target)) {
+        setCommentsActive(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, [videoID]);
+
+  const toggleComments = () => {
+    setCommentsActive(!commentsActive);
+  };
 
   return (
     <Main title="영상" description="영상">
@@ -69,7 +85,7 @@ const VideoPage = () => {
                   controls={true}
                   style={{ position: 'absolute', top: 0, left: 0 }}
                 />
-                <div className='video_comment'>
+                <div className={`video_comment ${commentsActive ? 'active' : ''}`} ref={videoCommentRef}>
                   <h3>Comments</h3>
                   {comments.length > 0 ? (
                       <ul>
@@ -95,14 +111,13 @@ const VideoPage = () => {
                 <div>
                   <span className='view'><CiRead />{videoDetail.statistics.viewCount}</span>
                   <span className='like'><CiStar />{videoDetail.statistics.likeCount}</span>
-                  <span className='comment'><CiChat1 />{videoDetail.statistics.commentCount}</span>
+                  <span className='comment' onClick={toggleComments}><CiChat1 />{videoDetail.statistics.commentCount}</span>
                 </div>
               </div>
             </div>
             <div className="video__desc">
               {videoDetail.snippet.description}
             </div>
-
         </section>
           )
       )}

@@ -1,10 +1,115 @@
-import React from 'react'
-import Main from '../components/section/Main'
+import React, { useEffect, useState } from 'react';
+import Main from '../components/section/Main';
+import { homeDetails, legend40 } from "../data/home";
 
-const Home = () => {
-  return (
-    <Main title="메인" discription="KBO LAND 메인">HOME</Main>
-  )
+const getRandomTeam = (teams) => {
+  const randomIndex = Math.floor(Math.random() * teams.length);
+  return teams[randomIndex];
 }
 
-export default Home
+const Home = () => {
+  const randomTeam = getRandomTeam(homeDetails);
+  const [news, setNews] = useState([]);
+  const [selectedTeam, setSelectedTeam] = useState(null);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      const apiKey = '75c1b139ce23402d9b0623f75ba0fa6c';
+      const url = `https://newsapi.org/v2/everything?q=KBO OR 한국 야구&language=ko&pageSize=5&apiKey=${apiKey}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setNews(data.articles);
+        console.log(data)
+      } catch (error) {
+        console.error("Error fetching the news:", error);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
+  const handleTeamClick = (team) => {
+    setSelectedTeam(team);
+  };
+
+  return (
+    <Main title="메인" description="KBO LAND 메인">
+      <div className='content_wrapper'>
+        <h3>오늘의 소개팀!</h3>
+        <div className='team_info_wrapper'>
+          <div className='team_logo_wrapper'>
+            <img src={randomTeam.teamLogo} alt={randomTeam.teamName} />
+            <p>{randomTeam.teamName}</p>
+          </div>
+          <div className='content'>
+            {randomTeam.teamText}
+          </div>
+        </div>
+      </div>
+      <div className='content_wrapper'>
+        <div className='team_wrapper'>
+          <h3>KBO 전체 구단</h3>
+          <div className='team_content_wrap'>
+            {homeDetails.map((team, key) => (
+              <div 
+                className={`team_content ${selectedTeam && selectedTeam.teamName === team.teamName ? 'active' : ''}`} 
+                key={key} 
+                onClick={() => handleTeamClick(team)}
+              >
+                <img src={team.teamLogo} alt={team.teamName} />
+                <p>{team.teamName}</p>
+              </div>
+            ))}
+          </div>
+          {selectedTeam && (
+            <div className='home_play_area'>
+              <img src={selectedTeam.teamLogo} alt={selectedTeam.teamName} />
+              <p className='title'>{selectedTeam.teamName}</p>
+              <div>
+                <p>홈구장: {selectedTeam.homeStadiumName}</p>
+                <p>홈구장 위치: {selectedTeam.homeStadiumLocation}</p>
+                <p>홈구장 수용인원: {selectedTeam.homeStadiumCapacity}</p>
+                <p>팀 우승년도: {Array.isArray(selectedTeam.teamChampionship) ? selectedTeam.teamChampionship.map((year, index) => (
+                  <span key={index}>{year}</span>
+                )) : selectedTeam.teamChampionship}</p>
+                <p>{selectedTeam.teamText}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className='content_wrapper'>
+        <h3>최신 뉴스</h3>
+        <div className='news_wrapper'>
+          {news.length > 0 ? (
+            news.map((article, index) => (
+              <div key={index} className='news_article'>
+                <h4>{article.title}</h4>
+                <p>{article.description}</p>
+                <a href={article.url} target='_blank' rel='noopener noreferrer'>Read more</a>
+              </div>
+            ))
+          ) : (
+            <p>Loading news...</p>
+          )}
+        </div>
+      </div>
+      <div className='content_wrapper'>
+        <h3>KBO 레전드 40</h3>
+        <div className='legend40_wrapper'>
+          {legend40.map((legend, index) => (
+            <div key={index} className='legend40_content'>
+              <img src={legend.legendImg} alt={legend.legendName} />
+              <p className='nick'>{legend.legendNickname}</p>
+              <h4>{legend.legendName}</h4>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Main>
+  );
+}
+
+export default Home;

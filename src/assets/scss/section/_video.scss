@@ -20,6 +20,9 @@
     }
 
     .video {
+        border:1px solid #222;
+        border-radius: 10px;
+        overflow: hidden;
         .video__thumb {
             a {
                 display: block;
@@ -31,7 +34,6 @@
         }
 
         .video__info {
-            background-color: #222;
             padding: 1rem;
             margin: 0px;
             .title {
@@ -78,6 +80,7 @@
 }
 
 #videoViewPage {
+    padding-top: 60px;
     padding-left: 40px;
     padding-right: 360px;
 }
@@ -100,6 +103,7 @@
         height: calc(100% - 240px);
         overflow: hidden auto;
         width: 300px;
+        padding-top: 60px;
         h3 {
             background-color: var(--white);
             color: var(--black);
@@ -128,10 +132,11 @@
     .channel {
         display: flex;
         justify-content: space-between;
-        background-color: #111;
+        background-color: #0043fd;
         padding: 1rem 2rem;
         border-radius: 40px;
         margin-bottom: 1rem;
+        color: #fff;
 
         span {
             margin-left: 10px;
@@ -154,4 +159,21 @@
 .video__desc {
     white-space: pre-line;
     line-height: 1.8;
+}
+@media (max-width: 960px) {
+    #videoViewPage {
+        padding-right: 40px;
+    }
+    .video_play {
+        .video_comment {
+            padding: 10px 30px;
+            right: -300px;
+            height: calc(100% - 70px);
+            background-color: #fff;
+            transition: all 0.3s ease;
+            &.active {
+                right: 0px;
+            }
+        }
+    }
 }
